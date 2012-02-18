@@ -10,6 +10,17 @@ import structures.PEApp
  */
 
 object PE2 extends PEApp {
+
     run()
-    def myAnswer = 3
+    def myAnswer = fibFunc(limit = 4E6.toInt) filter (_ % 2 == 0) sum
+
+    def fibFunc(a: Int = 1, b: Int = 2, limit: Int) : List[Int] = {
+        a :: {
+            if (b <= limit)
+                fibFunc(b, b + a, limit)
+            else
+                Nil
+        }
+    }
+
 }

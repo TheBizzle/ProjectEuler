@@ -10,7 +10,7 @@ package scala.structures
 object PEAnswers {
 
     def apply(key: Int) : String = {
-        answers(key).get
+        answers(key)
     }
 
     private val answers = Map(

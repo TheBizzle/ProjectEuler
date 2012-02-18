@@ -7,7 +7,7 @@ package scala.structures
  * Time: 1:42 PM
  */
 
-abstract class PEApp(testNum: Int) extends App {
+abstract class PEApp extends App {
 
     def run() {
         val testNum = generateTestNum
@@ -19,7 +19,7 @@ abstract class PEApp(testNum: Int) extends App {
     def myAnswer : Any
 
     private def generateTestNum : Int = {
-        
+        this.getClass.getName.dropRight(1).reverse.takeWhile(_.isDigit).reverse.toInt
     }
 
 }

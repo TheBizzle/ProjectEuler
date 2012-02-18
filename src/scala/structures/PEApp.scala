@@ -13,7 +13,7 @@ abstract class PEApp extends App {
         val testNum = generateTestNum
         val got = myAnswer.toString
         val expected = PEAnswers(testNum)
-        println("#" + testNum + ":\nGot: " + got + "\nExpected: " + expected + '\n' + {if (got == expected) "CORRECT" else "YOU ARE VERY, VERY WRONG"} + '\n')
+        println("#" + testNum + ":\nGot: " + got + "\nExpected: " + expected + '\n' + {if (got == expected) "CORRECT" else "YOU ARE VERY, VERY WRONG"})
     }
 
     def myAnswer : Any

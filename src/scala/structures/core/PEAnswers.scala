@@ -1,4 +1,4 @@
-package scala.structures
+package scala.structures.core
 
 /**
  * Created by IntelliJ IDEA.

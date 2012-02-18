@@ -1,6 +1,6 @@
 package scala.solutions
 
-import structures.PEApp
+import structures.core.PEApp
 
 /**
  * Created by IntelliJ IDEA.

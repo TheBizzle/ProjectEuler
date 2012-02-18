@@ -1,0 +1,84 @@
+package scala.structures.support
+
+import annotation.tailrec
+
+/**
+ * Created by IntelliJ IDEA.
+ * User: Jason
+ * Date: 2/18/12
+ * Time: 2:46 PM
+ */
+
+/** A Sieve of Atkin */
+object PrimeSieve {
+    
+    def apply(target: Long) : List[Long] = {
+        //sieve((2L until target).toList)
+        //primes(probe = 2L, limit = target).reverse
+        primesPrime(target)
+    }
+
+//    def sieve(inList: List[Long]) : List[Long] = {
+//        inList match {
+//            case Nil  => Nil
+//            case h::t => h :: sieve(t filter (_ % h == 0))
+//        }
+//    }
+
+//    @tailrec
+//    def primes(inList: List[Long] = Nil, probe: Long, limit: Long) : List[Long] = {
+//        if (probe > limit)
+//            inList
+//        else {
+//            val neoList = {
+//                if (inList.exists(probe % _ == 0))
+//                    inList
+//                else
+//                    probe :: inList
+//            }
+//            primes(neoList, probe + 1, limit)
+//        }
+//    }
+
+    def primesPrime(target: Long) : List[Long] = {
+
+        val list41  = List(1, 13, 17, 29, 37, 41, 49, 53)
+        val list31  = List(7, 19, 31, 43)
+        val list31m = List(11, 23, 47, 59)
+
+        def flip41(n: Int) {
+            
+        }
+
+        def flip31(n: Int) {
+
+        }
+
+        def flip31m(n: Int) {
+            
+        }
+
+        @tailrec def lamb(counter: Int) : List[Long] = {
+            (counter until arr.size) foreach {
+                case x =>
+                    val r = x % 60
+                    //@ Ooops, I think I misunderstood the sieve....
+                    if (list41 contains r)
+                        flip41(x)
+                    else if (list31 contains r)
+                        flip31(x)
+                    else if (list31m contains r)
+                        flip31m(x)
+            }
+            lamb(counter + 1)
+        }
+
+        val arr = Array.fill(target.toInt)(false)
+        lamb(5)
+
+        val props = (5 until arr.size) collect { case x if (arr(x)) => { val sqr = x*x; (2 to (arr.size / sqr).floor.toInt) map (_ * sqr) foreach (arr(_) = false); x } }
+        2L :: 3L :: props
+
+    }
+
+}

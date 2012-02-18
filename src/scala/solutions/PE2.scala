@@ -10,17 +10,7 @@ import structures.PEApp
  */
 
 object PE2 extends PEApp {
-
     run()
-    def myAnswer = fibFunc(limit = 4E6.toInt) filter (_ % 2 == 0) sum
-
-    def fibFunc(a: Int = 1, b: Int = 2, limit: Int) : List[Int] = {
-        a :: {
-            if (b <= limit)
-                fibFunc(b, b + a, limit)
-            else
-                Nil
-        }
-    }
-
+    def myAnswer = fibStream() takeWhile(_ < 4E6.toInt) filter (_ % 2 == 0) sum
+    def fibStream(a: Int = 1, b: Int = 2) : Stream[Int] = a #:: fibStream(b, a + b)
 }

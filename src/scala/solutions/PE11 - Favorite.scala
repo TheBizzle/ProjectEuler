@@ -31,10 +31,10 @@ object PE11 extends PEApp {
         List(udDiagonalArgs, duDiagonalArgs, verticalArgs, horizontalArgs) map { case (g, f, c) => extractAllFromGrid(g, f, c) } flatten
     }
 
-    def extractAllFromGrid(grid: Array[Array[Int]], progressionFunc: (Int, Int) => List[(Int, Int)], criteria: (Array[Array[Int]], Int, Int) => Boolean) : List[List[Int]] = {
+    def extractAllFromGrid(grid: Array[Array[Int]], progressionFunc: (Int, Int) => List[(Int, Int)], isInBounds: (Array[Array[Int]], Int, Int) => Boolean) : List[List[Int]] = {
         ( for (
               j <- (0 until grid.size);
-              i <- (0 until grid(j).size) if (criteria(grid, j, i))
+              i <- (0 until grid(j).size) if (isInBounds(grid, j, i))
           ) yield progressionFunc(j, i) map { case (y, x) => grid(y)(x) }
         ) toList
     }

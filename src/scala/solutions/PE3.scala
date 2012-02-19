@@ -10,6 +10,7 @@ import structures.support.PrimeSieve
  * Time: 2:59 PM
  */
 
+// This one's dumb.  I quit.
 object PE3 extends PEApp {
     run()
     def myAnswer = {

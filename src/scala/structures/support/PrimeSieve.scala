@@ -12,10 +12,10 @@ import annotation.tailrec
 /** A Sieve of Atkin */
 object PrimeSieve {
     
-    def apply(target: Long) : List[Long] = {
+    def apply(target: Long) : List[Int] = {
         //sieve((2L until target).toList)
         //primes(probe = 2L, limit = target).reverse
-        primesPrime(target)
+        primesPrime(target.toInt)
     }
 
 //    def sieve(inList: List[Long]) : List[Long] = {
@@ -40,7 +40,7 @@ object PrimeSieve {
 //        }
 //    }
 
-    def primesPrime(target: Long) : List[Long] = {
+    def primesPrime(target: Int) : List[Int] = {
 
         val list41  = List(1, 13, 17, 29, 37, 41, 49, 53)
         val list31  = List(7, 19, 31, 43)
@@ -58,7 +58,9 @@ object PrimeSieve {
             
         }
 
-        @tailrec def lamb(counter: Int) : List[Long] = {
+        val arr = Array.fill(target.toInt)(false)
+
+        @tailrec def lamb(counter: Int) : List[Int] = {
             (counter until arr.size) foreach {
                 case x =>
                     val r = x % 60
@@ -73,11 +75,11 @@ object PrimeSieve {
             lamb(counter + 1)
         }
 
-        val arr = Array.fill(target.toInt)(false)
+
         lamb(5)
 
-        val props = (5 until arr.size) collect { case x if (arr(x)) => { val sqr = x*x; (2 to (arr.size / sqr).floor.toInt) map (_ * sqr) foreach (arr(_) = false); x } }
-        2L :: 3L :: props
+        val props = (5 until arr.size).collect { case x if (arr(x)) => { val sqr = x*x; (2 to (arr.size / sqr).floor.toInt) map (_ * sqr) foreach (arr(_) = false); x } }.toList
+        2 :: 3 :: props
 
     }
 

@@ -43,11 +43,6 @@ object PrimeSieve {
         sieveHelper((2 to target).toList, Nil)
     }
 
-    // Sieve of Eratosthenes (Attempt... 3?)
-    def sieve_erat2(target: Int) : List[Int] = {
-        (2 to target).toList.foldLeft(List[Int]()){ case (acc, x) => if (acc exists (x % _ == 0)) acc else x :: acc } reverse
-    }
-
     def primesPrime(target: Int) : List[Int] = {
 
         val list41  = List(1, 13, 17, 29, 37, 41, 49, 53)

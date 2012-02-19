@@ -11,11 +11,6 @@ import structures.support.PrimeSieve
  */
 
 object PE10 extends PEApp {
-
     run()
-    //def myAnswer = PrimeSieve.sieve_erat(2E6.toInt) sum
-    //def myAnswer = PrimeSieve.sieve_erat(20.toInt) sum
-
-    def myAnswer = PrimeSieve.sieve_erat2(2E6.toInt) sum
-
+    def myAnswer = PrimeSieve.sieve_erat(2E6.toInt) sum
 }

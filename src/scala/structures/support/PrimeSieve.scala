@@ -13,17 +13,9 @@ import annotation.tailrec
 object PrimeSieve {
     
     def apply(target: Long) : List[Int] = {
-        //sieve((2L until target).toList)
         //primes(probe = 2L, limit = target).reverse
         primesPrime(target.toInt)
     }
-
-//    def sieve(inList: List[Long]) : List[Long] = {
-//        inList match {
-//            case Nil  => Nil
-//            case h::t => h :: sieve(t filter (_ % h == 0))
-//        }
-//    }
 
 //    @tailrec
 //    def primes(inList: List[Long] = Nil, probe: Long, limit: Long) : List[Long] = {
@@ -39,6 +31,22 @@ object PrimeSieve {
 //            primes(neoList, probe + 1, limit)
 //        }
 //    }
+
+    // Sieve of Eratosthenes
+    def sieve_erat(target: Int) : List[Int] = {
+        @tailrec def sieveHelper(inList: List[Int], outList: List[Int]) : List[Int] = {
+            inList match {
+                case Nil  => outList reverse
+                case h::t => sieveHelper(t filterNot (_ % h == 0), h :: outList)
+            }
+        }
+        sieveHelper((2 to target).toList, Nil)
+    }
+
+    // Sieve of Eratosthenes (Attempt... 3?)
+    def sieve_erat2(target: Int) : List[Int] = {
+        (2 to target).toList.foldLeft(List[Int]()){ case (acc, x) => if (acc exists (x % _ == 0)) acc else x :: acc } reverse
+    }
 
     def primesPrime(target: Int) : List[Int] = {
 

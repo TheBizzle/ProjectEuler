@@ -17,6 +17,6 @@ object PE5 extends PEApp {
             val result = last + leapBy
             result #:: numStream (leapBy, result)
         }
-        numStream(upper) dropWhile { case x => (1 to upper) map (x % _ == 0) contains(false) } head
+        numStream(upper) dropWhile { case x => (1 to upper) exists (x % _ != 0) } head
     }
 }

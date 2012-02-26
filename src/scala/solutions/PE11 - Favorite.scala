@@ -24,10 +24,10 @@ object PE11 extends PEApp {
     }
 
     def gridToQuads(grid: Array[Array[Int]], seqSize: Int) : List[List[Int]] = {
-        val udDiagonalArgs = (grid,     (y: Int, x: Int) => (Stream.iterate(y)(_ + 1) take seqSize) zip (Stream.iterate(x)(_ - 1) take seqSize) toList,     (g: Array[Array[Int]], y: Int, x: Int) => ((0 to (g.size - seqSize)) contains y) && (x >= (seqSize - 1)))
-        val duDiagonalArgs = (grid,     (y: Int, x: Int) => (Stream.iterate(y)(_ - 1) take seqSize) zip (Stream.iterate(x)(_ + 1) take seqSize) toList,     (g: Array[Array[Int]], y: Int, x: Int) => (y >= (seqSize - 1)) && ((0 to (g(y).size - seqSize)) contains x))
-        val verticalArgs   = (grid,     (y: Int, x: Int) => (Stream.iterate(y)(_ + 1) take seqSize) zip Stream.continually(x) toList,                       (g: Array[Array[Int]], y: Int, x: Int) => ((0 to (g.size - seqSize)) contains y) && ((0 until g(y).size) contains x))
-        val horizontalArgs = (grid,     (y: Int, x: Int) => Stream.continually(y) zip (Stream.iterate(x)(_ + 1) take seqSize) toList,                       (g: Array[Array[Int]], y: Int, x: Int) => ((0 until g.size) contains y) && ((0 to (g(y).size - seqSize)) contains x))
+        val udDiagonalArgs = (grid,     (y: Int, x: Int) => (Iterator.iterate(y)(_ + 1) take seqSize) zip (Iterator.iterate(x)(_ - 1) take seqSize) toList,     (g: Array[Array[Int]], y: Int, x: Int) => ((0 to (g.size - seqSize)) contains y) && (x >= (seqSize - 1)))
+        val duDiagonalArgs = (grid,     (y: Int, x: Int) => (Iterator.iterate(y)(_ - 1) take seqSize) zip (Iterator.iterate(x)(_ + 1) take seqSize) toList,     (g: Array[Array[Int]], y: Int, x: Int) => (y >= (seqSize - 1)) && ((0 to (g(y).size - seqSize)) contains x))
+        val verticalArgs   = (grid,     (y: Int, x: Int) => (Iterator.iterate(y)(_ + 1) take seqSize) zip Iterator.continually(x) toList,                       (g: Array[Array[Int]], y: Int, x: Int) => ((0 to (g.size - seqSize)) contains y) && ((0 until g(y).size) contains x))
+        val horizontalArgs = (grid,     (y: Int, x: Int) => Iterator.continually(y) zip (Iterator.iterate(x)(_ + 1) take seqSize) toList,                       (g: Array[Array[Int]], y: Int, x: Int) => ((0 until g.size) contains y) && ((0 to (g(y).size - seqSize)) contains x))
         List(udDiagonalArgs, duDiagonalArgs, verticalArgs, horizontalArgs) map { case (g, f, c) => extractAllFromGrid(g, f, c) } flatten
     }
 
